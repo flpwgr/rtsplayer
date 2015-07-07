@@ -2,7 +2,7 @@
 a very, very, very, very simple rtsp player using FFMpeg and ImageView.
 
 
-# Install
+## Install
 
 ```cordova plugin add https://github.com/felipew/rtsplayer.git```
 
@@ -10,14 +10,17 @@ Execute the compile.sh inside the Plugins folder
 
 Now you are ready to go
 
+## Using
 
-# Contribute
+``` javascript
+cordova.plugin.rtsplayer.watchVideo("rtsp://10.0.0.100:554/video", callbackSucces, callbackError);
+```
+
+## Contribute
 
 Android version is missing :(
 
 
-# About
+## About
 
 This plugin was origanly created to be used with h.264 rtsp streams.
-
-
