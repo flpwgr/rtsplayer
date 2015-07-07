@@ -1,0 +1,7 @@
+src/ios/FFMpegiOS/lib/libavcodec.a
+src/ios/FFMpegiOS/lib/libavdevice.a
+src/ios/FFMpegiOS/lib/libavfilter.a
+src/ios/FFMpegiOS/lib/libavformat.a
+src/ios/FFMpegiOS/lib/libavutil.a
+src/ios/FFMpegiOS/lib/libswresample.a
+src/ios/FFMpegiOS/lib/libswscale.a
