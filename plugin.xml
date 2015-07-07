@@ -12,17 +12,22 @@
 			</feature>
 		</config-file>
 
-		<source-file src="src/ios/rtsplayer.h" />
-		<source-file src="src/ios/rtsplayer.m" compiler-flags="-I/Users/felipew/Documents/Dev/videoTeste/platforms/ios/videoTeste/Plugins/br.com.stek.rtsplayer/FFMpegiOS/include"/>
+		<header-file src="src/ios/rtsplayer.h" />
+		<source-file src="src/ios/rtsplayer.m" compiler-flags="-I/usr/local/FFMpegiOS/include" />
 		
 
-		<source-file src="src/ios/rtsplayerViewController.h" />
-		<source-file src="src/ios/rtsplayerViewController.m" compiler-flags="-I/Users/felipew/Documents/Dev/videoTeste/platforms/ios/videoTeste/Plugins/br.com.stek.rtsplayer/FFMpegiOS/include"/>
+		<header-file src="src/ios/rtsplayerViewController.h" />
+		<source-file src="src/ios/rtsplayerViewController.m" compiler-flags="-I/usr/local/FFMpegiOS/include" />
 		<resource-file src="src/ios/rtsplayerViewController.xib" />
 
-		<source-file src="src/ios/videoRTSPlayer.h" />
-		<source-file src="src/ios/videoRTSPlayer.m" compiler-flags="-I/Users/felipew/Documents/Dev/videoTeste/platforms/ios/videoTeste/Plugins/br.com.stek.rtsplayer/FFMpegiOS/include" />
+		<header-file src="src/ios/videoRTSPlayer.h" />
+		<source-file src="src/ios/videoRTSPlayer.m" compiler-flags="-I/usr/local/FFMpegiOS/include" />
 		
+
+		<framework src="libiconv.dylib" />
+		<framework src="libz.dylib" />
+		<framework src="libbz2.dylib" />
+		<framework src="CoreVideo.framework" />
 
 		<!-- FFMPEG releated -->
 		<source-file src="src/ios/FFMpegiOS/lib/libavcodec.a" framework="true" />
@@ -32,10 +37,6 @@
 		<source-file src="src/ios/FFMpegiOS/lib/libavutil.a" framework="true" />
 		<source-file src="src/ios/FFMpegiOS/lib/libswresample.a" framework="true" />
 		<source-file src="src/ios/FFMpegiOS/lib/libswscale.a" framework="true" />
-
-		<framework src="libiconv.dylib" />
-		<framework src="libz.dylib" />
-		<framework src="libbz2.dylib" />
 
 		<source-file src="src/ios/FFMpegiOS/include/libavcodec/avcodec.h" target-dir="FFMpegiOS/include/libavcodec" />
 		<source-file src="src/ios/FFMpegiOS/include/libavcodec/avfft.h" target-dir="FFMpegiOS/include/libavcodec" />
