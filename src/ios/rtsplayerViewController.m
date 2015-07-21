@@ -8,14 +8,25 @@
 
 #import "rtsplayer.h"
 #import "rtsplayerViewController.h"
+#import "FFFrameExtractor.h"
 
 @interface rtsplayerViewController (){
     BOOL isHidden;
     UIActivityIndicatorView *spinner;
+    FFFrameExtractor *frameExtractor;
+    NSOperationQueue *opQueue;
 }
 
 @property (nonatomic, retain) NSTimer *nextFrameTimer;
 
+// TODO:
+// COPIAR O FRAMEEXTRACTOR PARA O CORDOVA PLUGIN
+// ADICIONAR OS FREEs DE MEMORIA, e so depois remover o BOOL abaixo
+// REMOVER TODAS AS REFERENCIAS AO videoRtsplayer
+// ACHO QUE SO
+//
+//////////////////////////////////////////////////////////////////////
+//BOOL adhuasdhuasd = HUDAHSUdhasd
 @end
 
 @implementation rtsplayerViewController
@@ -27,8 +38,6 @@
     isHidden = NO;
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     
-    [self addTapGesture];
-    
     return self;
 }
 
@@ -36,7 +45,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.videoView setContentMode:UIViewContentModeScaleAspectFit];
-    // Do any additional setup after loading the view from its nib.
+    
+    frameExtractor = [[FFFrameExtractor alloc] initWithInputPath:self.videoAddress];
+    [self addTapGesture];
+    
+    opQueue = [[NSOperationQueue alloc] init];
+    opQueue.maxConcurrentOperationCount = 1; // set to 1 to force everything to run on one thread;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,37 +59,71 @@
 }
 
 -(void) viewDidAppear:(BOOL)animated {
-    
+    [super viewWillAppear:animated];
     [self showSpinner];
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        //        video = [[ITBPlayer alloc] initWithVideo:@"rtsp://admin:admin@172.16.2.58:554/video"];
-        video = [[videoRTSPlayer alloc] initWithVideo:self.videoAddress];
-        
-        
-        if(video == nil) {
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                // hide loading spinner
-                [self buttonDismissPressed:nil];
+    [opQueue addOperationWithBlock:^{
+        if( [frameExtractor start] ) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.nextFrameTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/15 target:self selector:@selector(displayNextFrame:) userInfo:nil repeats:YES];
             });
-            
-            return;
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [frameExtractor stop];
+                [self buttonDismissPressed:nil]; // deu erro volta
+            });
         }
-        
-        dispatch_async( dispatch_get_main_queue(), ^{
-            // Video started streaming, get frames
-            [self playButtonAction:nil];
-        });
-        
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            // hide loading spinner
-            [self hideSpinner];
-        });
-    });
+    }];
     
-    
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        
+//        //        video = [[ITBPlayer alloc] initWithVideo:@"rtsp://admin:admin@172.16.2.58:554/video"];
+//        video = [[videoRTSPlayer alloc] initWithVideo:self.videoAddress];
+//        
+//        
+//        if(video == nil) {
+//            dispatch_sync(dispatch_get_main_queue(), ^{
+//                // hide loading spinner
+//                [self buttonDismissPressed:nil];
+//            });
+//            
+//            return;
+//        }
+//        
+//        dispatch_async( dispatch_get_main_queue(), ^{
+//            // Video started streaming, get frames
+//            [self playButtonAction:nil];
+//        });
+//        
+//        dispatch_sync(dispatch_get_main_queue(), ^{
+//            // hide loading spinner
+//            [self hideSpinner];
+//        });
+//    });
 }
+                           
+#pragma mark - TESTE FFFrameExtractor
+
+- (void)displayNextFrame:(NSTimer *)timer
+{
+    if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
+        [opQueue addOperationWithBlock:^(void){
+            if (frameExtractor.delegate == nil) {
+                frameExtractor.delegate = self;
+            }
+            [frameExtractor processNextFrame];
+        }];
+    }
+}
+
+- (void)updateWithCurrentUIImage:(UIImage *)image
+{
+    if (image != nil) {
+        [self hideSpinner];
+        self.videoView.image = image;
+    }
+}
+
+#pragma mark - FIM TESTE
 
 -(void) showSpinner {
     spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
@@ -103,14 +151,14 @@
 }
 
 
--(void)displayNextFrame:(NSTimer *)timer
-{
-    if (![video stepFrame]) {
-        return;
-    }
-    
-    self.videoView.image = video.currentImage;
-}
+//-(void)displayNextFrame:(NSTimer *)timer
+//{
+//    if (![video stepFrame]) {
+//        return;
+//    }
+//    
+//    self.videoView.image = video.currentImage;
+//}
 
 - (BOOL)prefersStatusBarHidden {
     return YES;

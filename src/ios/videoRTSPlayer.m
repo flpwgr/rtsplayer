@@ -11,10 +11,17 @@
 @implementation videoRTSPlayer
 
 -(id)initWithVideo: (NSString*)moviePath {
+    
     if (!(self=[super init])) {
         return nil;
     }
     
+    // initialize context and packet
+    pFormatCtx = avformat_alloc_context();
+    av_init_packet(&packet);
+    
+    
+    // setupVideoContext
     AVCodec         *pCodec;
     
     // Register all formats and codecs
@@ -22,12 +29,11 @@
     av_register_all();
     avformat_network_init();
     
-    AVDictionary *opts = 0;
-    
-    if (avformat_open_input(&pFormatCtx, [moviePath UTF8String], NULL, &opts) !=0 ) {
-        NSLog(@"Couldn't open file\n");
+    if (avformat_open_input(&pFormatCtx, [moviePath UTF8String], NULL, NULL) !=0 ) {
+        NSLog(@"Couldn't open stream\n");
         return nil;
     }
+    
     
     // Retrieve stream information
     if (avformat_find_stream_info(pFormatCtx,NULL) < 0) {
@@ -65,11 +71,21 @@
         return nil;
     }
     
+    pCodecCtx->flags2 = CODEC_FLAG2_CHUNKS;
+    pCodecCtx->error_concealment = FF_EC_GUESS_MVS | FF_EC_DEBLOCK;
+    
     // Allocate video frame
     pFrame = av_frame_alloc();
+
     
     outputWidth = pCodecCtx->width;
     outputHeight = pCodecCtx->height;
+    
+    if( outputWidth < 1 || outputHeight < 1) {
+        NSLog(@"Failed to get dimensions: %d x %d",outputWidth, outputHeight);
+        return nil;
+    }
+    
     [self setupScaler];
     
     return self;
@@ -91,8 +107,14 @@
         // Is this a packet from the video stream?
         if(packet.stream_index==videoStream) {
             // Decode video frame
-            avcodec_decode_video2(pCodecCtx, pFrame, &frameFinished, &packet);
+            int len = avcodec_decode_video2(pCodecCtx, pFrame, &frameFinished, &packet);
+            if (len < 0 || (packet.flags & AV_PKT_FLAG_CORRUPT)) {
+                NSLog(@"Error decoding video");
+                return NO;
+            }
         }
+        
+        av_free_packet(&packet);
     }
     
     return frameFinished!=0;

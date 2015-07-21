@@ -12,6 +12,7 @@
 @class rtsplayer;
 
 @interface rtsplayerViewController : UIViewController {
+    BOOL getFrame;
     videoRTSPlayer *video;
     float lastFrameTime;
 }

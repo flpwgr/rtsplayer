@@ -40,4 +40,13 @@
     self.hasPendingOperation = NO;
 }
 
+-(void)pluginInitialize {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onPause) name:UIApplicationDidEnterBackgroundNotification object:nil];
+}
+
+- (void) onPause {
+    NSLog(@"pausou..");
+    [self.overlay buttonDismissPressed:nil];
+}
+
 @end

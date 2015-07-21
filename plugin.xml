@@ -13,15 +13,15 @@
 		</config-file>
 
 		<header-file src="src/ios/rtsplayer.h" />
-		<source-file src="src/ios/rtsplayer.m" compiler-flags="-I/usr/local/FFMpegiOS/include" />
+		<source-file src="src/ios/rtsplayer.m" />
 		
 
 		<header-file src="src/ios/rtsplayerViewController.h" />
-		<source-file src="src/ios/rtsplayerViewController.m" compiler-flags="-I/usr/local/FFMpegiOS/include" />
+		<source-file src="src/ios/rtsplayerViewController.m" />
 		<resource-file src="src/ios/rtsplayerViewController.xib" />
 
-		<header-file src="src/ios/videoRTSPlayer.h" />
-		<source-file src="src/ios/videoRTSPlayer.m" compiler-flags="-I/usr/local/FFMpegiOS/include" />
+		<header-file src="src/ios/FFFrameExtractor.h" />
+		<source-file src="src/ios/FFFrameExtractor.m" compiler-flags="&quot;-I/usr/local/FFMpegiOS/include/ -I/usr/local/FFMpegiOS/include/libavcodec/ -I/usr/local/FFMpegiOS/include/libavformat/ -I/usr/local/FFMpegiOS/include/libswscale/&quot;" />
 		
 
 		<framework src="libiconv.dylib" />
@@ -37,99 +37,5 @@
 		<source-file src="src/ios/FFMpegiOS/lib/libavutil.a" framework="true" />
 		<source-file src="src/ios/FFMpegiOS/lib/libswresample.a" framework="true" />
 		<source-file src="src/ios/FFMpegiOS/lib/libswscale.a" framework="true" />
-
-		<source-file src="src/ios/FFMpegiOS/include/libavcodec/avcodec.h" target-dir="FFMpegiOS/include/libavcodec" />
-		<source-file src="src/ios/FFMpegiOS/include/libavcodec/avfft.h" target-dir="FFMpegiOS/include/libavcodec" />
-		<source-file src="src/ios/FFMpegiOS/include/libavcodec/dv_profile.h" target-dir="FFMpegiOS/include/libavcodec" />
-		<source-file src="src/ios/FFMpegiOS/include/libavcodec/dxva2.h" target-dir="FFMpegiOS/include/libavcodec" />
-		<source-file src="src/ios/FFMpegiOS/include/libavcodec/old_codec_ids.h" target-dir="FFMpegiOS/include/libavcodec" />
-		<source-file src="src/ios/FFMpegiOS/include/libavcodec/qsv.h" target-dir="FFMpegiOS/include/libavcodec" />
-		<source-file src="src/ios/FFMpegiOS/include/libavcodec/vaapi.h" target-dir="FFMpegiOS/include/libavcodec" />
-		<source-file src="src/ios/FFMpegiOS/include/libavcodec/vda.h" target-dir="FFMpegiOS/include/libavcodec" />
-		<source-file src="src/ios/FFMpegiOS/include/libavcodec/vdpau.h" target-dir="FFMpegiOS/include/libavcodec" />
-		<source-file src="src/ios/FFMpegiOS/include/libavcodec/version.h" target-dir="FFMpegiOS/include/libavcodec" />
-		<source-file src="src/ios/FFMpegiOS/include/libavcodec/vorbis_parser.h" target-dir="FFMpegiOS/include/libavcodec" />
-		<source-file src="src/ios/FFMpegiOS/include/libavcodec/xvmc.h" target-dir="FFMpegiOS/include/libavcodec" />
-		<source-file src="src/ios/FFMpegiOS/include/libavdevice/avdevice.h" target-dir="FFMpegiOS/include/libavdevice" />
-		<source-file src="src/ios/FFMpegiOS/include/libavdevice/version.h" target-dir="FFMpegiOS/include/libavdevice" />
-		<source-file src="src/ios/FFMpegiOS/include/libavfilter/asrc_abuffer.h" target-dir="FFMpegiOS/include/libavfilter" />
-		<source-file src="src/ios/FFMpegiOS/include/libavfilter/avcodec.h" target-dir="FFMpegiOS/include/libavfilter" />
-		<source-file src="src/ios/FFMpegiOS/include/libavfilter/avfilter.h" target-dir="FFMpegiOS/include/libavfilter" />
-		<source-file src="src/ios/FFMpegiOS/include/libavfilter/avfiltergraph.h" target-dir="FFMpegiOS/include/libavfilter" />
-		<source-file src="src/ios/FFMpegiOS/include/libavfilter/buffersink.h" target-dir="FFMpegiOS/include/libavfilter" />
-		<source-file src="src/ios/FFMpegiOS/include/libavfilter/buffersrc.h" target-dir="FFMpegiOS/include/libavfilter" />
-		<source-file src="src/ios/FFMpegiOS/include/libavfilter/version.h" target-dir="FFMpegiOS/include/libavfilter" />
-		<source-file src="src/ios/FFMpegiOS/include/libavformat/avformat.h"  target-dir="FFMpegiOS/include/libavformat" />
-		<source-file src="src/ios/FFMpegiOS/include/libavformat/avio.h"  target-dir="FFMpegiOS/include/libavformat" />
-		<source-file src="src/ios/FFMpegiOS/include/libavformat/version.h"  target-dir="FFMpegiOS/include/libavformat" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/adler32.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/aes.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/attributes.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/audio_fifo.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/audioconvert.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/avassert.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/avconfig.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/avstring.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/avutil.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/base64.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/blowfish.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/bprint.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/bswap.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/buffer.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/camellia.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/cast5.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/channel_layout.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/common.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/cpu.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/crc.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/dict.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/display.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/downmix_info.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/error.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/eval.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/ffversion.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/fifo.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/file.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/frame.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/hash.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/hmac.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/imgutils.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/intfloat.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/intreadwrite.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/lfg.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/log.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/lzo.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/macros.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/mathematics.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/md5.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/mem.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/motion_vector.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/murmur3.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/old_pix_fmts.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/opt.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/parseutils.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/pixdesc.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/pixelutils.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/pixfmt.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/random_seed.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/rational.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/replaygain.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/ripemd.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/samplefmt.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/sha.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/sha512.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/stereo3d.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/threadmessage.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/time.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/timecode.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/timestamp.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/twofish.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/version.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libavutil/xtea.h"  target-dir="FFMpegiOS/include/libavutil" />
-		<source-file src="src/ios/FFMpegiOS/include/libswresample/swresample.h"  target-dir="FFMpegiOS/include/libswresample" />
-		<source-file src="src/ios/FFMpegiOS/include/libswresample/version.h"  target-dir="FFMpegiOS/include/libswresample" />
-		<source-file src="src/ios/FFMpegiOS/include/libswscale/swscale.h"  target-dir="FFMpegiOS/include/libswscale" />
-		<source-file src="src/ios/FFMpegiOS/include/libswscale/version.h"  target-dir="FFMpegiOS/include/libswscale" />
-
 	</platform>
 </plugin>
