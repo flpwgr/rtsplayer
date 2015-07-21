@@ -80,9 +80,6 @@ int8_t SetupAVContextForURL(AVFormatContext **pFormatContext, AVCodecContext **p
                 NSLog(@"Error decoding video");
                 return NO;
             }
-//        } else if ( packet.stream_index == audioStream ) {
-//            NSLog(@"Achou frame de audio");
-//            int len = avcodec_decode_audio4(pCodecContext, pFrame, &frameFinished, &packet);
         }
         
         av_free_packet(&packet);
@@ -107,7 +104,6 @@ int8_t SetupAVContextForURL(AVFormatContext **pFormatContext, AVCodecContext **p
         return NO;
     }
     
-//    pFrame = avcodec_alloc_frame();
     pFrame = av_frame_alloc();
     int sourceWidth = pCodecContext->width;
     int sourceHeight = pCodecContext->height;

@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "videoRTSPlayer.h"
+//#import "videoRTSPlayer.h"
 
 @class rtsplayer;
 
 @interface rtsplayerViewController : UIViewController {
     BOOL getFrame;
-    videoRTSPlayer *video;
+//    videoRTSPlayer *video;
     float lastFrameTime;
 }
 

@@ -19,14 +19,6 @@
 
 @property (nonatomic, retain) NSTimer *nextFrameTimer;
 
-// TODO:
-// COPIAR O FRAMEEXTRACTOR PARA O CORDOVA PLUGIN
-// ADICIONAR OS FREEs DE MEMORIA, e so depois remover o BOOL abaixo
-// REMOVER TODAS AS REFERENCIAS AO videoRtsplayer
-// ACHO QUE SO
-//
-//////////////////////////////////////////////////////////////////////
-//BOOL adhuasdhuasd = HUDAHSUdhasd
 @end
 
 @implementation rtsplayerViewController
@@ -73,32 +65,6 @@
             });
         }
     }];
-    
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        
-//        //        video = [[ITBPlayer alloc] initWithVideo:@"rtsp://admin:admin@172.16.2.58:554/video"];
-//        video = [[videoRTSPlayer alloc] initWithVideo:self.videoAddress];
-//        
-//        
-//        if(video == nil) {
-//            dispatch_sync(dispatch_get_main_queue(), ^{
-//                // hide loading spinner
-//                [self buttonDismissPressed:nil];
-//            });
-//            
-//            return;
-//        }
-//        
-//        dispatch_async( dispatch_get_main_queue(), ^{
-//            // Video started streaming, get frames
-//            [self playButtonAction:nil];
-//        });
-//        
-//        dispatch_sync(dispatch_get_main_queue(), ^{
-//            // hide loading spinner
-//            [self hideSpinner];
-//        });
-//    });
 }
                            
 #pragma mark - TESTE FFFrameExtractor
@@ -141,24 +107,12 @@
 -(IBAction)playButtonAction:(id)sender {
     lastFrameTime = -1;
     
-    [video seekTime:0.0];
-    
     self.nextFrameTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/15
                                                            target:self
                                                          selector:@selector(displayNextFrame:)
                                                          userInfo:nil
                                                           repeats:YES];
 }
-
-
-//-(void)displayNextFrame:(NSTimer *)timer
-//{
-//    if (![video stepFrame]) {
-//        return;
-//    }
-//    
-//    self.videoView.image = video.currentImage;
-//}
 
 - (BOOL)prefersStatusBarHidden {
     return YES;
@@ -214,19 +168,26 @@
 }
 
 - (IBAction)buttonDismissPressed:(id)sender {
-    // clean up timer
-    NSLog(@"parando timer");
+    
+    frameExtractor.delegate = nil;
     [self.nextFrameTimer invalidate];
-    self.nextFrameTimer = nil;
+    [opQueue cancelAllOperations];
+    [opQueue addOperationWithBlock:^(void){
+        [frameExtractor stop];
+    }];
     
-    NSLog(@"fechando stream");
     
-    // Close stream and free all contexts
-    if(video != nil) {
-        [video closeStream];
-    }
-    
-    NSLog(@"Fechando viewcontroller");
+//    NSLog(@"fechando stream");
+//    [frameExtractor stop];
+//    
+//    // clean up timer
+//    NSLog(@"parando timer");
+//    [self.nextFrameTimer invalidate];
+//    self.nextFrameTimer = nil;
+//    
+//
+//    
+//    NSLog(@"Fechando viewcontroller");
     
     [self.origem finishOkAndDismiss];
 }
