@@ -176,19 +176,6 @@
         [frameExtractor stop];
     }];
     
-    
-//    NSLog(@"fechando stream");
-//    [frameExtractor stop];
-//    
-//    // clean up timer
-//    NSLog(@"parando timer");
-//    [self.nextFrameTimer invalidate];
-//    self.nextFrameTimer = nil;
-//    
-//
-//    
-//    NSLog(@"Fechando viewcontroller");
-    
     [self.origem finishOkAndDismiss];
 }
 
