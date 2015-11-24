@@ -13,7 +13,7 @@ Now you are ready to go
 ## Using
 
 ``` javascript
-cordova.plugin.rtsplayer.watchVideo("rtsp://10.0.0.100:554/video", callbackSucces, callbackError);
+cordova.plugins.rtsplayer.watchVideo("rtsp://10.0.0.100:554/video", callbackSucces, callbackError);
 ```
 
 ## Contribute
