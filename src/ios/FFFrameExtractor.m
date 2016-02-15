@@ -236,7 +236,7 @@ int8_t SetupAVContextForURL(AVFormatContext **pFormatContext, AVCodecContext **p
     
     if (audioStream < 0) {
         NSLog(@"Couldn't get Audio Stream");
-        return -1;
+//        return -1;
     }
     
     NSLog(@"Got Streams: Video: %i, Audio: %i", videoStream, audioStream);
@@ -265,15 +265,17 @@ int8_t SetupAVContextForURL(AVFormatContext **pFormatContext, AVCodecContext **p
     (*pCodecContext)->error_concealment = FF_EC_GUESS_MVS | FF_EC_DEBLOCK;
     
     // set audio codec context and make sure codec exists
-    *pAudioCodecContext = (*pFormatContext)->streams[(unsigned int)audioStream]->codec;
-    pCodec = avcodec_find_decoder((*pAudioCodecContext)->codec_id);
-    if (pCodec == NULL) {
-        NSLog(@"Unsupported Audio Codec");
-        return -1;
-    }
-    if (avcodec_open2(*pAudioCodecContext, pCodec, NULL) < 0) {
-        NSLog(@"Couldn't open Audio Codec");
-        return -1;
+    if(audioStream >= 0) {
+        *pAudioCodecContext = (*pFormatContext)->streams[(unsigned int)audioStream]->codec;
+        pCodec = avcodec_find_decoder((*pAudioCodecContext)->codec_id);
+        if (pCodec == NULL) {
+            NSLog(@"Unsupported Audio Codec");
+            return -1;
+        }
+        if (avcodec_open2(*pAudioCodecContext, pCodec, NULL) < 0) {
+            NSLog(@"Couldn't open Audio Codec");
+            return -1;
+        }
     }
     
     return 0;
