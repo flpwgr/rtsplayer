@@ -21,7 +21,7 @@
 		<resource-file src="src/ios/rtsplayerViewController.xib" />
 
 		<header-file src="src/ios/FFFrameExtractor.h" />
-		<source-file src="src/ios/FFFrameExtractor.m" compiler-flags="&quot;-I/usr/local/FFMpegiOS/include/ -I/usr/local/FFMpegiOS/include/libavcodec/ -I/usr/local/FFMpegiOS/include/libavformat/ -I/usr/local/FFMpegiOS/include/libswscale/&quot;" />
+		<source-file src="src/ios/FFFrameExtractor.m" compiler-flags="-I/usr/local/FFMpegiOS/include/ -I/usr/local/FFMpegiOS/include/libavcodec/ -I/usr/local/FFMpegiOS/include/libavformat/ -I/usr/local/FFMpegiOS/include/libswscale/" />
 		
 
 		<framework src="libiconv.dylib" />
