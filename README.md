@@ -24,3 +24,6 @@ Android version is missing :(
 ## About
 
 This plugin was origanly created to be used with h.264 rtsp streams.
+
+
+More info about ffmpeg/ios etc etc: [ffmpeg ios](http://www.cantgetnosleep.com/wordpress/?p=111)
