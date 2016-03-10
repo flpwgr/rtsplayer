@@ -16,6 +16,10 @@ Now you are ready to go
 cordova.plugins.rtsplayer.watchVideo("rtsp://10.0.0.100:554/video", callbackSucces, callbackError);
 ```
 
+``` javascript
+cordova.plugins.rtsplayer.watch("rtsp://10.0.0.100/video", "user", "password" callbackSucces, callbackError);
+```
+
 ## Contribute
 
 Android version is missing :(
