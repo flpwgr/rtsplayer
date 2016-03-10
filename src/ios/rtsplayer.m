@@ -28,6 +28,33 @@
     [self.viewController presentViewController:self.overlay animated:YES completion:nil];
 }
 
+-(void) watch:(CDVInvokedUrlCommand*) command {
+    NSString* url = [command argumentAtIndex:0];
+    NSString* usr = [command argumentAtIndex:1];
+    NSString* pwd = [command argumentAtIndex:2];
+    
+    url = [url substringFromIndex:[@"rtsp://" length]]; // remove rtsp:// from url
+    url = [NSString stringWithFormat:@"rtsp://%@:%@@%@",usr,pwd,url]; // append the usr/pwd
+    
+    NSLog(@"URL IS: %@", url);
+    // avoid webview being released from memory
+    self.hasPendingOperation = YES;
+    // we use that to respond to the plugin when it finishes
+    self.lastCommand = command;
+    
+    // load the view
+    self.overlay = [[rtsplayerViewController alloc] initWithNibName:@"rtsplayerViewController" bundle:nil];
+    
+    // on the view controller make a reference to this class
+    self.overlay.origem = self;
+    self.overlay.videoAddress = url;
+    
+    
+    
+    // present the View
+    [self.viewController presentViewController:self.overlay animated:YES completion:nil];
+}
+
 -(void) finishOkAndDismiss {
     // End the execution
     [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
