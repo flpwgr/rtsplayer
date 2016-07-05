@@ -12,6 +12,7 @@ import android.os.PowerManager;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -65,6 +66,12 @@ public class rtsplayerActivity extends Activity implements SurfaceHolder.Callbac
 
     private void createVideoView() {
         surfaceView = new SurfaceView(getApplicationContext());
+        surfaceView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"Para sair clique em voltar",Toast.LENGTH_SHORT).show();
+            }
+        });
         surfaceHolder = surfaceView.getHolder();
         surfaceHolder.addCallback(this);
 
