@@ -22,7 +22,8 @@ cordova.plugins.rtsplayer.watch("rtsp://10.0.0.100/video", "user", "password" ca
 
 ## Contribute
 
-Android version is missing :(
+* General improvments
+* Audio support on iOS
 
 
 ## About
