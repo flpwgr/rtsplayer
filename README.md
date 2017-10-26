@@ -1,3 +1,7 @@
+# ATENTION
+I not maintining this anymore! I do not work with iOS/Android development anymore. Use at your own risk!
+Feel free to fork and update :)
+
 # rtsplayer
 a very, very, very, very simple rtsp player using FFMpeg and ImageView.
 
